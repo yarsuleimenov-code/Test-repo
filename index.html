@@ -167,6 +167,42 @@
     </div>
   </div>
 
+  <!-- Bar Chart -->
+<div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+  <h2 class="text-lg font-semibold mb-5">Orders by Region</h2>
+
+  <div class="h-64 border-2 border-dashed border-gray-300 rounded-2xl bg-gray-50 p-4 flex items-center justify-center">
+
+    <svg width="100%" height="100%" viewBox="0 0 500 220" preserveAspectRatio="xMidYMid meet">
+
+      <!-- Axis -->
+      <line x1="40" y1="20" x2="40" y2="180" stroke="#d1d5db"></line>
+      <line x1="40" y1="180" x2="470" y2="180" stroke="#d1d5db"></line>
+
+      <!-- Grid -->
+      <line x1="40" y1="140" x2="470" y2="140" stroke="#f3f4f6"></line>
+      <line x1="40" y1="100" x2="470" y2="100" stroke="#f3f4f6"></line>
+      <line x1="40" y1="60" x2="470" y2="60" stroke="#f3f4f6"></line>
+
+      <!-- Bars -->
+      <rect x="70" y="90" width="50" height="90" fill="#3b82f6" rx="6"></rect>
+      <rect x="150" y="50" width="50" height="130" fill="#10b981" rx="6"></rect>
+      <rect x="230" y="110" width="50" height="70" fill="#f59e0b" rx="6"></rect>
+      <rect x="310" y="70" width="50" height="110" fill="#ef4444" rx="6"></rect>
+      <rect x="390" y="120" width="50" height="60" fill="#8b5cf6" rx="6"></rect>
+
+      <!-- Labels -->
+      <text x="82" y="200" font-size="12" fill="#6b7280">NY</text>
+      <text x="162" y="200" font-size="12" fill="#6b7280">CA</text>
+      <text x="242" y="200" font-size="12" fill="#6b7280">TX</text>
+      <text x="322" y="200" font-size="12" fill="#6b7280">FL</text>
+      <text x="402" y="200" font-size="12" fill="#6b7280">IL</text>
+
+    </svg>
+
+  </div>
+</div>
+
 </section>
     <!-- Grid -->
     <line x1="40" y1="20" x2="40" y2="180" stroke="#d1d5db"/>
