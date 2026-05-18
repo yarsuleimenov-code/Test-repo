@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaberman Analytics BI Canvas MVP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-900 font-sans">
+  <div class="min-h-screen flex">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-gray-200 p-5 flex-shrink-0 hidden xl:block">
+      <div class="mb-8">
+        <div class="text-2xl font-bold">Zaberman IS</div>
+        <div class="text-sm text-gray-500">Analytics Workspace</div>
+      </div>
+
+      <nav class="space-y-3 text-sm">
+        <a href="./index.html" class="block bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl hover:bg-gray-100 transition">Dashboard</a>
+        <a href="./dispatch.html" class="block bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl hover:bg-gray-100 transition">Orders</a>
+        <div class="bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl">Reports</div>
+        <div class="bg-black text-white px-4 py-3 rounded-xl">Analytics</div>
+        <div class="bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl">Routes</div>
+        <a href="https://script.google.com/a/macros/zaberman.com/s/AKfycbxb2KE0B7AuEmSsZQSbltSQxtEpd8MOL3mym1ow-ZtBhwYn9jbglv6Y1OIaUIzlL6xk/exec" target="_blank" class="block bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl hover:bg-gray-100 transition">Warehouse</a>
+        <div class="bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl">Integrations</div>
+        <a href="./admin.html" class="block bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl hover:bg-gray-100 transition">Admin</a>
+      </nav>
+
+      <div class="mt-8 text-xs text-gray-500">
+        Operational Hub v0.1<br />
+        BI Canvas Prototype
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 min-w-0">
+
+      <!-- Topbar -->
+      <header class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between gap-4">
+        <div class="min-w-0">
+          <h1 class="text-2xl font-bold leading-tight">Analytics BI Canvas</h1>
+          <p class="text-sm text-gray-500">SQL-based analytics workspace for operational dashboards, datasets and reusable queries</p>
+        </div>
+
+        <div class="flex items-center gap-3 flex-shrink-0">
+          <div class="text-sm bg-green-50 text-green-700 border border-green-200 px-4 py-2 rounded-xl hidden md:block">DB Online</div>
+          <button onclick="runSqlPreview()" class="border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 text-sm font-medium">Run SQL</button>
+          <button onclick="saveWidget()" class="bg-black text-white rounded-xl px-4 py-2 text-sm font-medium">Add to canvas</button>
+        </div>
+      </header>
+
+      <div class="p-6 space-y-6">
+
+        <!-- System Status -->
+        <section class="bg-black text-white rounded-3xl p-5 shadow-sm">
+          <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 text-sm">
+            <div><div class="text-gray-400">Revenue MTD</div><div class="text-xl font-bold">$428k</div></div>
+            <div><div class="text-gray-400">Active Orders</div><div class="text-xl font-bold">186</div></div>
+            <div><div class="text-gray-400">Export Success</div><div class="text-xl font-bold text-green-400">98%</div></div>
+            <div><div class="text-gray-400">Delayed Orders</div><div class="text-xl font-bold text-red-400">7</div></div>
+            <div><div class="text-gray-400">Datasets</div><div class="text-xl font-bold text-yellow-300">12</div></div>
+            <div><div class="text-gray-400">Last Refresh</div><div class="text-xl font-bold">2 min ago</div></div>
+          </div>
+        </section>
+
+        <!-- SQL Workspace -->
+        <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+
+          <!-- Query editor -->
+          <div class="xl:col-span-2 bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+            <div class="flex items-center justify-between mb-5">
+              <div>
+                <h2 class="text-xl font-semibold">SQL Query Builder</h2>
+                <p class="text-sm text-gray-500 mt-1">Read-only SQL workspace. Production should run through backend API with role validation.</p>
+              </div>
+              <select id="queryTemplate" onchange="loadQueryTemplate()" class="border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 text-sm">
+                <option value="orders">Active orders by status</option>
+                <option value="revenue">Revenue by source</option>
+                <option value="sla">SLA risk orders</option>
+                <option value="warehouse">Warehouse capacity</option>
+              </select>
+            </div>
+
+            <textarea id="sqlEditor" class="w-full h-64 border border-gray-300 rounded-2xl p-4 bg-gray-950 text-green-300 font-mono text-sm outline-none" spellcheck="false">SELECT
+  status_name,
+  COUNT(*) AS orders_count,
+  SUM(weight) AS total_weight,
+  SUM(package_count) AS packages_count
+FROM orders_view
+WHERE order_status NOT IN ('Order canceled')
+  AND last_change_date >= CURRENT_DATE - INTERVAL 30 DAY
+GROUP BY status_name
+ORDER BY orders_count DESC;</textarea>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4 text-sm">
+              <select class="border border-gray-300 rounded-xl px-4 py-3 bg-gray-50">
+                <option>Connection: MySQL Prod Replica</option>
+                <option>Connection: MySQL Dev</option>
+                <option>Connection: Google Sheets Staging</option>
+              </select>
+              <select class="border border-gray-300 rounded-xl px-4 py-3 bg-gray-50">
+                <option>Visualization: Auto</option>
+                <option>Table</option>
+                <option>Bar chart</option>
+                <option>Line chart</option>
+                <option>Pie chart</option>
+                <option>KPI card</option>
+              </select>
+              <select class="border border-gray-300 rounded-xl px-4 py-3 bg-gray-50">
+                <option>Refresh: Manual</option>
+                <option>Every 15 min</option>
+                <option>Hourly</option>
+                <option>Daily</option>
+              </select>
+              <button onclick="runSqlPreview()" class="bg-black text-white rounded-xl px-4 py-3 font-medium">Preview result</button>
+            </div>
+          </div>
+
+          <!-- Data catalog -->
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+            <h2 class="text-xl font-semibold mb-5">Data Catalog</h2>
+            <div class="space-y-3 text-sm">
+              <button onclick="insertTable('orders_view')" class="w-full text-left border border-gray-200 bg-gray-50 rounded-2xl p-4 hover:bg-gray-100">
+                <div class="font-semibold">orders_view</div>
+                <div class="text-gray-500 mt-1">Orders, status, zones, dates, weight</div>
+              </button>
+              <button onclick="insertTable('payments_view')" class="w-full text-left border border-yellow-200 bg-yellow-50 rounded-2xl p-4 hover:bg-yellow-100">
+                <div class="font-semibold">payments_view</div>
+                <div class="text-yellow-700 mt-1">Restricted finance dataset</div>
+              </button>
+              <button onclick="insertTable('route_export_view')" class="w-full text-left border border-gray-200 bg-gray-50 rounded-2xl p-4 hover:bg-gray-100">
+                <div class="font-semibold">route_export_view</div>
+                <div class="text-gray-500 mt-1">Spoke-ready route export rows</div>
+              </button>
+              <button onclick="insertTable('warehouse_capacity_view')" class="w-full text-left border border-gray-200 bg-gray-50 rounded-2xl p-4 hover:bg-gray-100">
+                <div class="font-semibold">warehouse_capacity_view</div>
+                <div class="text-gray-500 mt-1">NY / CA capacity and load</div>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Preview Result -->
+        <section class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+          <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4 mb-5">
+            <div>
+              <h2 class="text-xl font-semibold">Query Result Preview</h2>
+              <p class="text-sm text-gray-500 mt-1">Demo result table. In production this block should render API response from SQL execution service.</p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <button onclick="downloadCsv()" class="border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 text-sm font-medium">Download CSV</button>
+              <button onclick="saveWidget()" class="bg-black text-white rounded-xl px-4 py-2 text-sm font-medium">Add widget</button>
+            </div>
+          </div>
+
+          <div class="overflow-auto rounded-2xl border border-gray-200">
+            <table id="resultTable" class="w-full min-w-[900px] text-sm">
+              <thead class="bg-gray-50">
+                <tr class="text-left" id="resultHead"></tr>
+              </thead>
+              <tbody id="resultBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- BI Canvas -->
+        <section class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+          <div class="flex items-center justify-between mb-5">
+            <div>
+              <h2 class="text-xl font-semibold">BI Canvas</h2>
+              <p class="text-sm text-gray-500 mt-1">Workspace for reusable dashboard widgets based on SQL datasets.</p>
+            </div>
+            <div class="flex gap-3">
+              <button class="border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 text-sm font-medium">Save layout</button>
+              <button class="border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 text-sm font-medium">Share view</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div class="bg-gray-50 border border-gray-200 rounded-3xl p-5">
+              <div class="text-sm text-gray-500">Orders by Status</div>
+              <div class="h-72 mt-4"><canvas id="statusChart"></canvas></div>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 rounded-3xl p-5">
+              <div class="text-sm text-gray-500">Revenue by Source</div>
+              <div class="h-72 mt-4"><canvas id="revenueChart"></canvas></div>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 rounded-3xl p-5">
+              <div class="text-sm text-gray-500">SLA Risk</div>
+              <div class="grid grid-cols-2 gap-4 mt-4">
+                <div class="bg-white border border-gray-200 rounded-2xl p-4">
+                  <div class="text-sm text-gray-500">Delayed</div>
+                  <div class="text-3xl font-bold text-red-600 mt-2">7</div>
+                </div>
+                <div class="bg-white border border-gray-200 rounded-2xl p-4">
+                  <div class="text-sm text-gray-500">Watch</div>
+                  <div class="text-3xl font-bold text-yellow-600 mt-2">19</div>
+                </div>
+                <div class="bg-white border border-gray-200 rounded-2xl p-4">
+                  <div class="text-sm text-gray-500">On Track</div>
+                  <div class="text-3xl font-bold text-green-600 mt-2">160</div>
+                </div>
+                <div class="bg-white border border-gray-200 rounded-2xl p-4">
+                  <div class="text-sm text-gray-500">No Date</div>
+                  <div class="text-3xl font-bold mt-2">5</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="xl:col-span-2 bg-gray-50 border border-gray-200 rounded-3xl p-5">
+              <div class="text-sm text-gray-500 mb-4">Operational Trend</div>
+              <div class="h-80"><canvas id="trendChart"></canvas></div>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 rounded-3xl p-5">
+              <div class="text-sm text-gray-500 mb-4">Warehouse Load</div>
+              <div class="space-y-5">
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span>NY Warehouse</span><span>81%</span></div>
+                  <div class="h-3 bg-white rounded-full"><div class="h-3 bg-yellow-500 rounded-full w-[81%]"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span>CA Warehouse</span><span>63%</span></div>
+                  <div class="h-3 bg-white rounded-full"><div class="h-3 bg-green-500 rounded-full w-[63%]"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span>Temporary Storage</span><span>44%</span></div>
+                  <div class="h-3 bg-white rounded-full"><div class="h-3 bg-blue-500 rounded-full w-[44%]"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Governance -->
+        <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+            <h2 class="text-xl font-semibold mb-5">Saved Queries</h2>
+            <div class="space-y-3 text-sm">
+              <div class="border border-gray-200 bg-gray-50 rounded-2xl p-4">Active orders by status</div>
+              <div class="border border-gray-200 bg-gray-50 rounded-2xl p-4">Revenue by broker and source</div>
+              <div class="border border-yellow-200 bg-yellow-50 text-yellow-700 rounded-2xl p-4">SLA risk with missing dates</div>
+              <div class="border border-gray-200 bg-gray-50 rounded-2xl p-4">Warehouse utilization</div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+            <h2 class="text-xl font-semibold mb-5">Data Quality Checks</h2>
+            <div class="space-y-3 text-sm">
+              <div class="border border-red-200 bg-red-50 text-red-700 rounded-2xl p-4">5 rows with #ERROR! due dates</div>
+              <div class="border border-red-200 bg-red-50 text-red-700 rounded-2xl p-4">17 orders with missing contacts</div>
+              <div class="border border-yellow-200 bg-yellow-50 text-yellow-700 rounded-2xl p-4">12 stale orders, no update 48h+</div>
+              <div class="border border-green-200 bg-green-50 text-green-700 rounded-2xl p-4">All exports logged</div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+            <h2 class="text-xl font-semibold mb-5">Access Rules</h2>
+            <div class="space-y-4 text-sm">
+              <label class="flex items-center justify-between border-b border-gray-100 pb-3"><span>Read-only SQL</span><input type="checkbox" checked /></label>
+              <label class="flex items-center justify-between border-b border-gray-100 pb-3"><span>Block DELETE / UPDATE</span><input type="checkbox" checked /></label>
+              <label class="flex items-center justify-between border-b border-gray-100 pb-3"><span>Limit result rows</span><input type="checkbox" checked /></label>
+              <label class="flex items-center justify-between border-b border-gray-100 pb-3"><span>Log query execution</span><input type="checkbox" checked /></label>
+              <label class="flex items-center justify-between"><span>Finance datasets restricted</span><input type="checkbox" checked /></label>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const queryTemplates = {
+      orders: `SELECT\n  status_name,\n  COUNT(*) AS orders_count,\n  SUM(weight) AS total_weight,\n  SUM(package_count) AS packages_count\nFROM orders_view\nWHERE order_status NOT IN ('Order canceled')\n  AND last_change_date >= CURRENT_DATE - INTERVAL 30 DAY\nGROUP BY status_name\nORDER BY orders_count DESC;`,
+      revenue: `SELECT\n  source_name,\n  COUNT(*) AS orders_count,\n  SUM(total_amount) AS revenue\nFROM payments_view\nWHERE payment_status = 'Paid'\n  AND payment_date >= CURRENT_DATE - INTERVAL 30 DAY\nGROUP BY source_name\nORDER BY revenue DESC;`,
+      sla: `SELECT\n  external_id,\n  status_name,\n  responsible_name,\n  pickup_due_date,\n  delivery_due_date,\n  DATEDIFF(CURRENT_DATE, last_change_date) AS days_without_update\nFROM orders_view\nWHERE delivery_due_date < CURRENT_DATE\n   OR pickup_due_date IS NULL\n   OR recipient_phone IS NULL\nORDER BY days_without_update DESC;`,
+      warehouse: `SELECT\n  warehouse_name,\n  capacity_volume,\n  used_volume,\n  ROUND(used_volume / capacity_volume * 100, 1) AS load_percent\nFROM warehouse_capacity_view\nORDER BY load_percent DESC;`
+    };
+
+    const demoResults = {
+      orders: {
+        headers: ['status_name', 'orders_count', 'total_weight', 'packages_count'],
+        rows: [
+          ['2. Order has been received', 48, 6200, 780],
+          ['3. Seller business hours collected', 32, 4100, 520],
+          ['4. Submitted for pick-up', 29, 3800, 430],
+          ['5. Pick-up finished. Photo & BOL uploaded', 36, 5600, 690],
+          ['6. Sent interstate', 21, 7200, 310]
+        ]
+      },
+      revenue: {
+        headers: ['source_name', 'orders_count', 'revenue'],
+        rows: [
+          ['AptDeco', 96, '$182,400'],
+          ['UShip', 54, '$108,900'],
+          ['Manual', 33, '$74,500'],
+          ['Mover', 18, '$39,800']
+        ]
+      },
+      sla: {
+        headers: ['external_id', 'status_name', 'responsible_name', 'pickup_due_date', 'delivery_due_date', 'days_without_update'],
+        rows: [
+          ['22631906', 'Order canceled', 'Julia M.', '#ERROR!', '#ERROR!', 6],
+          ['22630908', '5. Pick-up finished', 'CA Dispatch', 'May 25, 2026', 'Jun 03, 2026', 4],
+          ['22625430', '8. Buyer business hours collected', 'NY Dispatch', 'Apr 02, 2026', 'Apr 02, 2026', 3]
+        ]
+      },
+      warehouse: {
+        headers: ['warehouse_name', 'capacity_volume', 'used_volume', 'load_percent'],
+        rows: [
+          ['NY Warehouse', 12000, 9720, '81.0%'],
+          ['CA Warehouse', 15000, 9450, '63.0%'],
+          ['Temporary Storage', 5000, 2200, '44.0%']
+        ]
+      }
+    };
+
+    function loadQueryTemplate() {
+      const key = document.getElementById('queryTemplate').value;
+      document.getElementById('sqlEditor').value = queryTemplates[key];
+      renderResult(demoResults[key]);
+    }
+
+    function runSqlPreview() {
+      const key = document.getElementById('queryTemplate').value;
+      renderResult(demoResults[key]);
+      alert('Demo SQL preview rendered. Production version should call backend API.');
+    }
+
+    function insertTable(tableName) {
+      const editor = document.getElementById('sqlEditor');
+      editor.value = `SELECT\n  *\nFROM ${tableName}\nLIMIT 100;`;
+    }
+
+    function renderResult(result) {
+      const head = document.getElementById('resultHead');
+      const body = document.getElementById('resultBody');
+
+      head.innerHTML = result.headers.map(header => `<th class="p-4">${header}</th>`).join('');
+      body.innerHTML = result.rows.map(row => `
+        <tr class="border-t border-gray-100 hover:bg-gray-50">
+          ${row.map(cell => `<td class="p-4">${cell}</td>`).join('')}
+        </tr>
+      `).join('');
+    }
+
+    function getResultCsvText() {
+      const headers = Array.from(document.querySelectorAll('#resultTable thead th')).map(th => th.innerText);
+      const rows = Array.from(document.querySelectorAll('#resultTable tbody tr')).map(row =>
+        Array.from(row.children).map(cell => cell.innerText.replace(/,/g, ' '))
+      );
+      return [headers, ...rows].map(row => row.join(',')).join('\n');
+    }
+
+    function downloadCsv() {
+      const csv = getResultCsvText();
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'analytics_query_result.csv';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    function saveWidget() {
+      alert('Widget added to BI canvas in demo mode. Production should save SQL, visualization type and permissions.');
+    }
+
+    function runTests() {
+      console.assert(Object.keys(queryTemplates).length >= 4, 'Query templates should exist');
+      console.assert(demoResults.orders.rows.length > 0, 'Demo result rows should exist');
+      console.assert(getResultCsvText().includes('\n'), 'CSV should use escaped newline separators');
+      console.assert(document.querySelectorAll('#resultTable tbody tr').length > 0, 'Initial query result should render rows');
+    }
+
+    loadQueryTemplate();
+
+    const chartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom' } }
+    };
+
+    new Chart(document.getElementById('statusChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Received', 'Business hours', 'Submitted', 'Pickup finished', 'Interstate'],
+        datasets: [{ data: [48, 32, 29, 36, 21], backgroundColor: ['#3b82f6', '#f59e0b', '#10b981', '#22c55e', '#8b5cf6'] }]
+      },
+      options: chartOptions
+    });
+
+    new Chart(document.getElementById('revenueChart'), {
+      type: 'bar',
+      data: {
+        labels: ['AptDeco', 'UShip', 'Manual', 'Mover'],
+        datasets: [{ label: 'Revenue', data: [182400, 108900, 74500, 39800], backgroundColor: '#3b82f6' }]
+      },
+      options: chartOptions
+    });
+
+    new Chart(document.getElementById('trendChart'), {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [
+          { label: 'Orders', data: [38, 42, 51, 47, 60, 34, 29], borderColor: '#3b82f6', backgroundColor: '#3b82f6', tension: 0.35 },
+          { label: 'Delivered', data: [24, 30, 41, 39, 44, 27, 22], borderColor: '#10b981', backgroundColor: '#10b981', tension: 0.35 },
+          { label: 'Exceptions', data: [4, 5, 6, 8, 7, 3, 2], borderColor: '#ef4444', backgroundColor: '#ef4444', tension: 0.35 }
+        ]
+      },
+      options: chartOptions
+    });
+
+    runTests();
+  </script>
+</body>
+</html>
