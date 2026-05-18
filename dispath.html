@@ -10,8 +10,6 @@
 
 <body class="bg-gray-100 text-gray-900 font-sans">
   <div class="min-h-screen flex">
-
-    <!-- Sidebar -->
     <aside class="w-64 bg-white border-r border-gray-200 p-5 flex-shrink-0 hidden xl:block">
       <div class="mb-8">
         <div class="text-2xl font-bold">Zaberman IS</div>
@@ -35,10 +33,7 @@
       </div>
     </aside>
 
-    <!-- Main -->
     <main class="flex-1 min-w-0">
-
-      <!-- Topbar -->
       <header class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between gap-4">
         <div class="min-w-0">
           <h1 class="text-2xl font-bold leading-tight">Dispatcher Operational Hub</h1>
@@ -46,49 +41,24 @@
         </div>
 
         <div class="flex items-center gap-3 flex-shrink-0">
-          <div class="text-sm bg-yellow-50 text-yellow-700 border border-yellow-200 px-4 py-2 rounded-xl hidden md:block">
-            12 Alerts
-          </div>
-
+          <div class="text-sm bg-yellow-50 text-yellow-700 border border-yellow-200 px-4 py-2 rounded-xl hidden md:block">12 Alerts</div>
           <button class="border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 text-sm font-medium">Refresh DB</button>
           <button onclick="downloadCsv()" class="bg-black text-white rounded-xl px-4 py-2 text-sm font-medium">Export CSV</button>
         </div>
       </header>
 
-      <!-- Content -->
       <div class="p-6 space-y-6">
-
-        <!-- System Status -->
         <section class="bg-black text-white rounded-3xl p-5 shadow-sm">
           <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 text-sm">
-            <div>
-              <div class="text-gray-400">Active Orders</div>
-              <div class="text-xl font-bold">186</div>
-            </div>
-            <div>
-              <div class="text-gray-400">Ready for Pickup</div>
-              <div class="text-xl font-bold text-green-400">42</div>
-            </div>
-            <div>
-              <div class="text-gray-400">Missing Data</div>
-              <div class="text-xl font-bold text-red-400">17</div>
-            </div>
-            <div>
-              <div class="text-gray-400">Today Due</div>
-              <div class="text-xl font-bold text-yellow-300">24</div>
-            </div>
-            <div>
-              <div class="text-gray-400">Export Errors</div>
-              <div class="text-xl font-bold text-red-400">5</div>
-            </div>
-            <div>
-              <div class="text-gray-400">Last Sync</div>
-              <div class="text-xl font-bold">2 min ago</div>
-            </div>
+            <div><div class="text-gray-400">Active Orders</div><div class="text-xl font-bold">186</div></div>
+            <div><div class="text-gray-400">Ready for Pickup</div><div class="text-xl font-bold text-green-400">42</div></div>
+            <div><div class="text-gray-400">Missing Data</div><div class="text-xl font-bold text-red-400">17</div></div>
+            <div><div class="text-gray-400">Today Due</div><div class="text-xl font-bold text-yellow-300">24</div></div>
+            <div><div class="text-gray-400">Export Errors</div><div class="text-xl font-bold text-red-400">5</div></div>
+            <div><div class="text-gray-400">Last Sync</div><div class="text-xl font-bold">2 min ago</div></div>
           </div>
         </section>
 
-        <!-- Active Orders Export Table -->
         <section class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
           <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4 mb-5">
             <div>
@@ -167,106 +137,15 @@
                   <th class="p-4">Weight</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr class="border-t border-gray-100 hover:bg-gray-50">
-                  <td class="p-4 font-medium">56085655</td>
-                  <td class="p-4"><span class="px-3 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700">2. Order has been received</span></td>
-                  <td class="p-4">CA Dispatch</td>
-                  <td class="p-4">CA LA</td>
-                  <td class="p-4">May 15, 2026</td>
-                  <td class="p-4">2372 Boston Post Road Larchmont</td>
-                  <td class="p-4">anytime</td>
-                  <td class="p-4">anytime</td>
-                  <td class="p-4">51 x 14 x 33.5</td>
-                  <td class="p-4">+1 914-833-8336</td>
-                  <td class="p-4">Clarke Auction Gallery</td>
-                  <td class="p-4">14</td>
-                  <td class="p-4">22626652</td>
-                  <td class="p-4">Chinese Alter Table</td>
-                  <td class="p-4">pickup</td>
-                  <td class="p-4">CA (C)</td>
-                  <td class="p-4">May 22, 2026</td>
-                  <td class="p-4">Jun 06, 2026</td>
-                  <td class="p-4">May 15, 2026</td>
-                  <td class="p-4">40</td>
-                </tr>
-                <tr class="border-t border-gray-100 hover:bg-gray-50">
-                  <td class="p-4 font-medium">56085659</td>
-                  <td class="p-4"><span class="px-3 py-1 rounded-full text-xs font-medium bg-yellow-50 text-yellow-700">3. Seller business hours collected</span></td>
-                  <td class="p-4">CA Dispatch</td>
-                  <td class="p-4">CA LA</td>
-                  <td class="p-4">May 15, 2026</td>
-                  <td class="p-4">2163 Stanford Street Alameda, CA</td>
-                  <td class="p-4">anytime</td>
-                  <td class="p-4">anytime</td>
-                  <td class="p-4">NIKKAI COFIE 27in MAQ</td>
-                  <td class="p-4">+15167683860</td>
-                  <td class="p-4">Fred Sperber</td>
-                  <td class="p-4">60</td>
-                  <td class="p-4">22627358</td>
-                  <td class="p-4">Couch</td>
-                  <td class="p-4">pickup</td>
-                  <td class="p-4">CA (LA)</td>
-                  <td class="p-4">May 22, 2026</td>
-                  <td class="p-4">May 29, 2026</td>
-                  <td class="p-4">May 15, 2026</td>
-                  <td class="p-4">150</td>
-                </tr>
-                <tr class="border-t border-gray-100 hover:bg-gray-50">
-                  <td class="p-4 font-medium">56085664</td>
-                  <td class="p-4"><span class="px-3 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700">4. Submitted for pick-up</span></td>
-                  <td class="p-4">NY Dispatch</td>
-                  <td class="p-4">NY DC</td>
-                  <td class="p-4">May 19, 2026</td>
-                  <td class="p-4">242 Paseo del Caballo Walnut, CA</td>
-                  <td class="p-4">8:00 AM</td>
-                  <td class="p-4">12:00 PM</td>
-                  <td class="p-4">8 chairs</td>
-                  <td class="p-4">+18182886138</td>
-                  <td class="p-4">Zack Herrera</td>
-                  <td class="p-4">100</td>
-                  <td class="p-4">22611578</td>
-                  <td class="p-4">Glass table with chairs</td>
-                  <td class="p-4">pickup</td>
-                  <td class="p-4">NY (DC)</td>
-                  <td class="p-4">May 22, 2026</td>
-                  <td class="p-4">Jun 05, 2026</td>
-                  <td class="p-4">May 15, 2026</td>
-                  <td class="p-4">250</td>
-                </tr>
-                <tr class="border-t border-gray-100 hover:bg-gray-50">
-                  <td class="p-4 font-medium">143</td>
-                  <td class="p-4"><span class="px-3 py-1 rounded-full text-xs font-medium bg-red-50 text-red-700">Order canceled</span></td>
-                  <td class="p-4">Julia M.</td>
-                  <td class="p-4">CA LA</td>
-                  <td class="p-4"></td>
-                  <td class="p-4"></td>
-                  <td class="p-4"></td>
-                  <td class="p-4"></td>
-                  <td class="p-4">New lead for the call</td>
-                  <td class="p-4">+19171361</td>
-                  <td class="p-4"></td>
-                  <td class="p-4"></td>
-                  <td class="p-4">22631906</td>
-                  <td class="p-4">New lead for the call</td>
-                  <td class="p-4"></td>
-                  <td class="p-4"></td>
-                  <td class="p-4 text-red-600 font-semibold">#ERROR!</td>
-                  <td class="p-4 text-red-600 font-semibold">#ERROR!</td>
-                  <td class="p-4">May 15, 2026</td>
-                  <td class="p-4"></td>
-                </tr>
-              </tbody>
+              <tbody></tbody>
             </table>
           </div>
 
           <div class="text-xs text-gray-500 mt-3">Filters update the table client-side. Export uses currently visible rows.</div>
         </section>
 
-        <!-- Quick Actions -->
         <section class="bg-white rounded-3xl shadow-sm border border-gray-200 p-6">
           <h2 class="text-xl font-semibold mb-5">Quick Actions</h2>
-
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
             <div class="border border-gray-300 bg-gray-50 rounded-2xl p-5 font-medium">Export Active Orders</div>
             <div class="border border-gray-300 bg-gray-50 rounded-2xl p-5 font-medium">Open Kommo</div>
@@ -275,69 +154,28 @@
           </div>
         </section>
 
-        <!-- KPI -->
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-          <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
-            <div class="text-sm text-gray-500">Active Orders</div>
-            <div class="text-3xl font-bold mt-3">186</div>
-          </div>
-          <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
-            <div class="text-sm text-gray-500">Ready for Pickup</div>
-            <div class="text-3xl font-bold mt-3 text-green-600">42</div>
-          </div>
-          <div class="bg-white rounded-2xl border border-red-200 p-5 shadow-sm bg-red-50">
-            <div class="text-sm text-red-500">Missing Data</div>
-            <div class="text-3xl font-bold mt-3 text-red-600">17</div>
-          </div>
-          <div class="bg-white rounded-2xl border border-yellow-200 p-5 shadow-sm bg-yellow-50">
-            <div class="text-sm text-yellow-700">Today Due</div>
-            <div class="text-3xl font-bold mt-3 text-yellow-700">24</div>
-          </div>
-          <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
-            <div class="text-sm text-gray-500">Interstate Load</div>
-            <div class="text-3xl font-bold mt-3">71%</div>
-          </div>
-          <div class="bg-white rounded-2xl border border-green-200 p-5 shadow-sm bg-green-50">
-            <div class="text-sm text-green-700">Export Success</div>
-            <div class="text-3xl font-bold mt-3 text-green-700">98%</div>
-          </div>
+          <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm"><div class="text-sm text-gray-500">Active Orders</div><div class="text-3xl font-bold mt-3">186</div></div>
+          <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm"><div class="text-sm text-gray-500">Ready for Pickup</div><div class="text-3xl font-bold mt-3 text-green-600">42</div></div>
+          <div class="bg-white rounded-2xl border border-red-200 p-5 shadow-sm bg-red-50"><div class="text-sm text-red-500">Missing Data</div><div class="text-3xl font-bold mt-3 text-red-600">17</div></div>
+          <div class="bg-white rounded-2xl border border-yellow-200 p-5 shadow-sm bg-yellow-50"><div class="text-sm text-yellow-700">Today Due</div><div class="text-3xl font-bold mt-3 text-yellow-700">24</div></div>
+          <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm"><div class="text-sm text-gray-500">Interstate Load</div><div class="text-3xl font-bold mt-3">71%</div></div>
+          <div class="bg-white rounded-2xl border border-green-200 p-5 shadow-sm bg-green-50"><div class="text-sm text-green-700">Export Success</div><div class="text-3xl font-bold mt-3 text-green-700">98%</div></div>
         </section>
 
-        <!-- Charts -->
         <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-          <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
-            <h2 class="text-lg font-semibold mb-5">Operational Workload</h2>
-            <div class="h-72"><canvas id="workloadChart"></canvas></div>
-          </div>
-
-          <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
-            <h2 class="text-lg font-semibold mb-5">Orders by Status</h2>
-            <div class="h-72"><canvas id="statusChart"></canvas></div>
-          </div>
-
-          <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
-            <h2 class="text-lg font-semibold mb-5">Zone Load</h2>
-            <div class="h-72"><canvas id="zoneChart"></canvas></div>
-          </div>
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm"><h2 class="text-lg font-semibold mb-5">Operational Workload</h2><div class="h-72"><canvas id="workloadChart"></canvas></div></div>
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm"><h2 class="text-lg font-semibold mb-5">Orders by Status</h2><div class="h-72"><canvas id="statusChart"></canvas></div></div>
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm"><h2 class="text-lg font-semibold mb-5">Zone Load</h2><div class="h-72"><canvas id="zoneChart"></canvas></div></div>
         </section>
 
-        <!-- Operational Widgets -->
         <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
           <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
             <h2 class="text-xl font-semibold mb-5">Current Route Load</h2>
             <div class="space-y-4">
-              <div>
-                <div class="flex justify-between text-sm mb-2"><span>NY → CA</span><span>91%</span></div>
-                <div class="h-3 bg-gray-100 rounded-full"><div class="h-3 bg-red-500 rounded-full w-[91%]"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between text-sm mb-2"><span>CA → NY</span><span>76%</span></div>
-                <div class="h-3 bg-gray-100 rounded-full"><div class="h-3 bg-blue-500 rounded-full w-[76%]"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between text-sm mb-2"><span>Local CA</span><span>54%</span></div>
-                <div class="h-3 bg-gray-100 rounded-full"><div class="h-3 bg-green-500 rounded-full w-[54%]"></div></div>
-              </div>
+              <div><div class="flex justify-between text-sm mb-2"><span>NY → CA</span><span>91%</span></div><div class="h-3 bg-gray-100 rounded-full"><div class="h-3 bg-red-500 rounded-full w-[91%]"></div></div></div>
+              <div><div class="flex justify-between text-sm mb-2"><span>CA → NY</span><span>76%</span></div><div class="h-3 bg-gray-100 rounded-full"><div class="h-3 bg-blue-500 rounded-full w-[76%]"></div></div></div>
+              <div><div class="flex justify-between text-sm mb-2"><span>Local CA</span><span>54%</span></div><div class="h-3 bg-gray-100 rounded-full"><div class="h-3 bg-green-500 rounded-full w-[54%]"></div></div></div>
             </div>
           </div>
 
@@ -354,71 +192,38 @@
           <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
             <h2 class="text-xl font-semibold mb-5">Interstate Trips</h2>
             <div class="grid grid-cols-2 gap-4">
-              <div class="bg-gray-50 border rounded-2xl p-4">
-                <div class="text-sm text-gray-500">Active Trips</div>
-                <div class="text-3xl font-bold mt-2">2</div>
-              </div>
-              <div class="bg-gray-50 border rounded-2xl p-4">
-                <div class="text-sm text-gray-500">Next Departure</div>
-                <div class="text-xl font-bold mt-2">Fri</div>
-              </div>
-              <div class="bg-gray-50 border rounded-2xl p-4">
-                <div class="text-sm text-gray-500">Avg Load</div>
-                <div class="text-3xl font-bold mt-2">74%</div>
-              </div>
-              <div class="bg-gray-50 border rounded-2xl p-4">
-                <div class="text-sm text-gray-500">SLA Risk</div>
-                <div class="text-3xl font-bold mt-2 text-red-600">3</div>
-              </div>
+              <div class="bg-gray-50 border rounded-2xl p-4"><div class="text-sm text-gray-500">Active Trips</div><div class="text-3xl font-bold mt-2">2</div></div>
+              <div class="bg-gray-50 border rounded-2xl p-4"><div class="text-sm text-gray-500">Next Departure</div><div class="text-xl font-bold mt-2">Fri</div></div>
+              <div class="bg-gray-50 border rounded-2xl p-4"><div class="text-sm text-gray-500">Avg Load</div><div class="text-3xl font-bold mt-2">74%</div></div>
+              <div class="bg-gray-50 border rounded-2xl p-4"><div class="text-sm text-gray-500">SLA Risk</div><div class="text-3xl font-bold mt-2 text-red-600">3</div></div>
             </div>
           </div>
         </section>
 
-        <!-- Integrations -->
         <section class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
           <h2 class="text-xl font-semibold mb-5">Integrations Hub</h2>
-
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-            <div class="border border-gray-200 rounded-2xl p-5 bg-gray-50">
-              <div class="font-semibold text-lg mb-2">Kommo CRM</div>
-              <div class="text-sm text-green-600 mb-4">Status: Online</div>
-              <button class="border border-gray-300 rounded-xl px-4 py-2 bg-white text-sm">Open Service</button>
-            </div>
-            <div class="border border-yellow-200 rounded-2xl p-5 bg-yellow-50">
-              <div class="font-semibold text-lg mb-2">Spoke</div>
-              <div class="text-sm text-yellow-700 mb-4">Status: Sync delayed</div>
-              <button class="border border-gray-300 rounded-xl px-4 py-2 bg-white text-sm">Open Service</button>
-            </div>
-            <div class="border border-gray-200 rounded-2xl p-5 bg-gray-50">
-              <div class="font-semibold text-lg mb-2">MySQL DB</div>
-              <div class="text-sm text-green-600 mb-4">Status: Online</div>
-              <button class="border border-gray-300 rounded-xl px-4 py-2 bg-white text-sm">Open Service</button>
-            </div>
-            <div class="border border-gray-200 rounded-2xl p-5 bg-gray-50">
-              <div class="font-semibold text-lg mb-2">Google Drive</div>
-              <div class="text-sm text-green-600 mb-4">Status: Online</div>
-              <button class="border border-gray-300 rounded-xl px-4 py-2 bg-white text-sm">Open Service</button>
-            </div>
+            <div class="border border-gray-200 rounded-2xl p-5 bg-gray-50"><div class="font-semibold text-lg mb-2">Kommo CRM</div><div class="text-sm text-green-600 mb-4">Status: Online</div><button class="border border-gray-300 rounded-xl px-4 py-2 bg-white text-sm">Open Service</button></div>
+            <div class="border border-yellow-200 rounded-2xl p-5 bg-yellow-50"><div class="font-semibold text-lg mb-2">Spoke</div><div class="text-sm text-yellow-700 mb-4">Status: Sync delayed</div><button class="border border-gray-300 rounded-xl px-4 py-2 bg-white text-sm">Open Service</button></div>
+            <div class="border border-gray-200 rounded-2xl p-5 bg-gray-50"><div class="font-semibold text-lg mb-2">MySQL DB</div><div class="text-sm text-green-600 mb-4">Status: Online</div><button class="border border-gray-300 rounded-xl px-4 py-2 bg-white text-sm">Open Service</button></div>
+            <div class="border border-gray-200 rounded-2xl p-5 bg-gray-50"><div class="font-semibold text-lg mb-2">Google Drive</div><div class="text-sm text-green-600 mb-4">Status: Online</div><button class="border border-gray-300 rounded-xl px-4 py-2 bg-white text-sm">Open Service</button></div>
           </div>
         </section>
-
       </div>
     </main>
   </div>
 
   <script>
     const orders = [
-      {id:'56085655', status:'2. Order has been received', resp:'CA Dispatch', zone:'CA LA', date:'May 15, 2026', address:'2372 Boston Post Road Larchmont', earliest:'', latest:'', notes:'51 x 14 x 33.5', phone:'+1 914-833-8336', recipient:'Clarke Auction Gallery', count:14, external:'22626652', company:'Chinese Alter Table', type:'pickup', seller:'CA (C)', pickup:'May 22, 2026', delivery:'Jun 06, 2026', change:'May 15, 2026', weight:40},
+      {id:'56085655', status:'2. Order has been received', resp:'CA Dispatch', zone:'CA LA', date:'May 15, 2026', address:'2372 Boston Post Road Larchmont', earliest:'anytime', latest:'anytime', notes:'51 x 14 x 33.5', phone:'+1 914-833-8336', recipient:'Clarke Auction Gallery', count:14, external:'22626652', company:'Chinese Alter Table', type:'pickup', seller:'CA (C)', pickup:'May 22, 2026', delivery:'Jun 06, 2026', change:'May 15, 2026', weight:40},
       {id:'56085659', status:'3. Seller business hours collected', resp:'CA Dispatch', zone:'CA LA', date:'May 15, 2026', address:'2163 Stanford Street Alameda, CA', earliest:'anytime', latest:'anytime', notes:'NIKKAI COFIE 27in MAQ', phone:'+15167683860', recipient:'Fred Sperber', count:60, external:'22627358', company:'Couch', type:'pickup', seller:'CA (LA)', pickup:'May 22, 2026', delivery:'May 29, 2026', change:'May 15, 2026', weight:150},
       {id:'56085664', status:'4. Submitted for pick-up', resp:'NY Dispatch', zone:'NY DC', date:'May 19, 2026', address:'242 Paseo del Caballo Walnut, CA', earliest:'8:00 AM', latest:'12:00 PM', notes:'8 chairs', phone:'+18182886138', recipient:'Zack Herrera', count:100, external:'22611578', company:'Glass table with chairs', type:'pickup', seller:'NY (DC)', pickup:'May 22, 2026', delivery:'Jun 05, 2026', change:'May 15, 2026', weight:250},
       {id:'56085667', status:'5. Pick-up finished. Photo & BOL uploaded', resp:'CA Dispatch', zone:'CA A', date:'May 16, 2026', address:'Edmonds Rd Sherman, CT 06784', earliest:'', latest:'', notes:'Other chairish order', phone:'', recipient:'', count:13, external:'22630908', company:'Neighbor Haven Sun Lounger', type:'pickup', seller:'CA (A)', pickup:'May 25, 2026', delivery:'Jun 03, 2026', change:'May 16, 2026', weight:35},
       {id:'56085675', status:'2. Order has been received', resp:'CA Dispatch', zone:'CA LA', date:'May 15, 2026', address:'20 Payton Street Lowell, MA 01851', earliest:'', latest:'', notes:'63 x 32 x 29 in', phone:'+19787580423', recipient:'Frank', count:34, external:'22631250', company:'Chaise', type:'pickup', seller:'CA (LA)', pickup:'May 26, 2026', delivery:'Jun 11, 2026', change:'May 15, 2026', weight:200},
       {id:'56085677', status:'5. Pick-up finished. Photo & BOL uploaded', resp:'CA Dispatch', zone:'CA SF', date:'May 16, 2026', address:'38 Main street Essex, MA 01929', earliest:'', latest:'', notes:'17 x 55 x 28 in', phone:'+19787683910', recipient:'David Neligan', count:67, external:'22652550', company:'AptDeco Burrow Nomad Light Gr', type:'pickup', seller:'CA (SF)', pickup:'May 16, 2026', delivery:'Jun 06, 2026', change:'May 16, 2026', weight:213},
-      {id:'56085655', status:'2. Order has been received', resp:'CA Dispatch', zone:'CA LA', date:'May 15, 2026', address:'260 Carpenter Rd Whitinsville, MA', earliest:'', latest:'', notes:'39 x 17 x 36', phone:'+17609089665', recipient:'Maggie', count:50, external:'22618094', company:'Chairs and Coffee Tables', type:'pickup', seller:'CA (LA)', pickup:'May 22, 2026', delivery:'Jun 06, 2026', change:'May 15, 2026', weight:50},
-      {id:'56085655', status:'2. Order has been received', resp:'CA Dispatch', zone:'CA SF', date:'May 15, 2026', address:'11 Chestnut Hill Dr New Fairfield, CT', earliest:'', latest:'', notes:'AptDeco item', phone:'+16467302944', recipient:'Edison Dervishi', count:14, external:'22631716', company:'Dresser to SF', type:'pickup', seller:'CA (SF)', pickup:'May 23, 2026', delivery:'Jun 05, 2026', change:'May 15, 2026', weight:100},
-      {id:'56085654', status:'4. Submitted for pick-up', resp:'NY Dispatch', zone:'NYC', date:'May 18, 2026', address:'1264 W 2nd Street Los Angeles CA 90026', earliest:'1:00 PM', latest:'4:00 PM', notes:'Ready for pickup', phone:'+13236429000', recipient:'EMILY HUERTA', count:45, external:'22496178', company:'4 Chairs / 2 tables', type:'pickup', seller:'NYC', pickup:'May 20, 2026', delivery:'Jun 03, 2026', change:'May 15, 2026', weight:200},
+      {id:'56085680', status:'4. Submitted for pick-up', resp:'NY Dispatch', zone:'NYC', date:'May 18, 2026', address:'1264 W 2nd Street Los Angeles CA 90026', earliest:'1:00 PM', latest:'4:00 PM', notes:'Ready for pickup', phone:'+13236429000', recipient:'EMILY HUERTA', count:45, external:'22496178', company:'4 Chairs / 2 tables', type:'pickup', seller:'NYC', pickup:'May 20, 2026', delivery:'Jun 03, 2026', change:'May 15, 2026', weight:200},
       {id:'143', status:'Order canceled', resp:'Julia M.', zone:'CA LA', date:'', address:'', earliest:'', latest:'', notes:'New lead for the call', phone:'+19171361', recipient:'', count:'', external:'22631906', company:'New lead for the call', type:'', seller:'', pickup:'#ERROR!', delivery:'#ERROR!', change:'May 15, 2026', weight:''},
-      {id:'56085659', status:'3. Seller business hours collected', resp:'Kamila', zone:'CA LA', date:'May 15, 2026', address:'2049 South El Camino Real San M', earliest:'anytime', latest:'anytime', notes:'UShip order', phone:'+16503038555', recipient:'Golden Lotus', count:25, external:'22600506', company:'Armoire', type:'pickup', seller:'CA (LA)', pickup:'May 19, 2026', delivery:'May 28, 2026', change:'May 15, 2026', weight:80},
+      {id:'56085690', status:'3. Seller business hours collected', resp:'Kamila', zone:'CA LA', date:'May 15, 2026', address:'2049 South El Camino Real San M', earliest:'anytime', latest:'anytime', notes:'UShip order', phone:'+16503038555', recipient:'Golden Lotus', count:25, external:'22600506', company:'Armoire', type:'pickup', seller:'CA (LA)', pickup:'May 19, 2026', delivery:'May 28, 2026', change:'May 15, 2026', weight:80},
       {id:'60750399', status:'8. Buyer business hours collected', resp:'NY Dispatch', zone:'CA A', date:'May 18, 2026', address:'3y blbl', earliest:'anytime', latest:'anytime', notes:'0 lbs final', phone:'+79042332042', recipient:'Илья Осипов', count:0, external:'22625430', company:'Test', type:'delivery', seller:'CA (A)', pickup:'Apr 02, 2026', delivery:'Apr 02, 2026', change:'May 18, 2026', weight:0}
     ];
 
@@ -441,77 +246,104 @@
       const type = document.getElementById('typeFilter').value;
       const search = document.getElementById('searchInput').value.toLowerCase();
 
-      const filtered = orders.filter(o => {
-        const searchable = Object.values(o).join(' ').toLowerCase();
-        return (!status || o.status === status) &&
-          (!resp || o.resp === resp) &&
-          (!zone || o.zone === zone) &&
-          (!type || o.type === type) &&
+      const filtered = orders.filter(order => {
+        const searchable = Object.values(order).join(' ').toLowerCase();
+        return (!status || order.status === status) &&
+          (!resp || order.resp === resp) &&
+          (!zone || order.zone === zone) &&
+          (!type || order.type === type) &&
           (!search || searchable.includes(search));
       });
 
-      tbody.innerHTML = filtered.map(o => `
+      tbody.innerHTML = filtered.map(order => `
         <tr class="border-t border-gray-100 hover:bg-gray-50">
-          <td class="p-4 font-medium">${o.id}</td>
-          <td class="p-4"><span class="px-3 py-1 rounded-full text-xs font-medium ${statusBadgeClass(o.status)}">${o.status}</span></td>
-          <td class="p-4">${o.resp}</td>
-          <td class="p-4">${o.zone}</td>
-          <td class="p-4">${o.date}</td>
-          <td class="p-4">${o.address}</td>
-          <td class="p-4">${o.earliest}</td>
-          <td class="p-4">${o.latest}</td>
-          <td class="p-4">${o.notes}</td>
-          <td class="p-4">${o.phone}</td>
-          <td class="p-4">${o.recipient}</td>
-          <td class="p-4">${o.count}</td>
-          <td class="p-4">${o.external}</td>
-          <td class="p-4">${o.company}</td>
-          <td class="p-4">${o.type}</td>
-          <td class="p-4">${o.seller}</td>
-          <td class="p-4 ${o.pickup === '#ERROR!' ? 'text-red-600 font-semibold' : ''}">${o.pickup}</td>
-          <td class="p-4 ${o.delivery === '#ERROR!' ? 'text-red-600 font-semibold' : ''}">${o.delivery}</td>
-          <td class="p-4">${o.change}</td>
-          <td class="p-4">${o.weight}</td>
+          <td class="p-4 font-medium">${order.id}</td>
+          <td class="p-4"><span class="px-3 py-1 rounded-full text-xs font-medium ${statusBadgeClass(order.status)}">${order.status}</span></td>
+          <td class="p-4">${order.resp}</td>
+          <td class="p-4">${order.zone}</td>
+          <td class="p-4">${order.date}</td>
+          <td class="p-4">${order.address}</td>
+          <td class="p-4">${order.earliest}</td>
+          <td class="p-4">${order.latest}</td>
+          <td class="p-4">${order.notes}</td>
+          <td class="p-4">${order.phone}</td>
+          <td class="p-4">${order.recipient}</td>
+          <td class="p-4">${order.count}</td>
+          <td class="p-4">${order.external}</td>
+          <td class="p-4">${order.company}</td>
+          <td class="p-4">${order.type}</td>
+          <td class="p-4">${order.seller}</td>
+          <td class="p-4 ${order.pickup === '#ERROR!' ? 'text-red-600 font-semibold' : ''}">${order.pickup}</td>
+          <td class="p-4 ${order.delivery === '#ERROR!' ? 'text-red-600 font-semibold' : ''}">${order.delivery}</td>
+          <td class="p-4">${order.change}</td>
+          <td class="p-4">${order.weight}</td>
         </tr>
       `).join('');
     }
 
     function resetFilters() {
-      filters.forEach(id => document.getElementById(id).value = '');
+      filters.forEach(id => { document.getElementById(id).value = ''; });
       renderTable();
     }
 
     function getFilteredRows() {
-      return [...document.querySelectorAll('#ordersTable tbody tr')].map(row =>
-        [...row.children].map(cell => cell.innerText.replace(/,/g, ' '))
+      return Array.from(document.querySelectorAll('#ordersTable tbody tr')).map(row =>
+        Array.from(row.children).map(cell => cell.innerText.replace(/,/g, ' '))
       );
     }
 
-    function downloadCsv() {
-      const headers = [...document.querySelectorAll('#ordersTable thead th')].map(th => th.innerText);
+    function getCsvText() {
+      const headers = Array.from(document.querySelectorAll('#ordersTable thead th')).map(th => th.innerText);
       const rows = getFilteredRows();
-      const csv = [headers, ...rows].map(r => r.join(',')).join('
-');
+      return [headers, ...rows].map(row => row.join(',')).join('\n');
+    }
+
+    function downloadCsv() {
+      const csv = getCsvText();
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'dispatcher_orders_export.csv';
-      a.click();
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'dispatcher_orders_export.csv';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
       URL.revokeObjectURL(url);
     }
 
+    function getClipboardText() {
+      const headers = Array.from(document.querySelectorAll('#ordersTable thead th')).map(th => th.innerText).join('\t');
+      const rows = getFilteredRows().map(row => row.join('\t')).join('\n');
+      return headers + '\n' + rows;
+    }
+
     function copyExport() {
-      const headers = [...document.querySelectorAll('#ordersTable thead th')].map(th => th.innerText).join('	');
-      const rows = getFilteredRows().map(r => r.join('	')).join('
-');
-      navigator.clipboard.writeText(headers + '
-' + rows);
-      alert('Visible rows copied to clipboard');
+      const text = getClipboardText();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => alert('Visible rows copied to clipboard'));
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        alert('Visible rows copied to clipboard');
+      }
+    }
+
+    function runTests() {
+      console.assert(Array.isArray(orders), 'orders should be an array');
+      console.assert(orders.length >= 10, 'orders should contain demo rows');
+      console.assert(typeof getCsvText() === 'string', 'CSV export should return string');
+      console.assert(getCsvText().includes('\n'), 'CSV export should use escaped newline separators');
+      console.assert(getClipboardText().includes('\t'), 'Clipboard export should use tab separators');
+      console.assert(document.querySelectorAll('#ordersTable tbody tr').length === orders.length, 'Initial render should show all orders');
     }
 
     filters.forEach(id => document.getElementById(id).addEventListener('input', renderTable));
     renderTable();
+    runTests();
 
     const chartOptions = {
       responsive: true,
@@ -545,7 +377,7 @@
       type: 'line',
       data: {
         labels: ['NYC', 'NY DC', 'CA LA', 'CA SF', 'CA A'],
-        datasets: [{ label: 'Orders', data: [22, 18, 54, 31, 27], tension: .35, borderColor: '#3b82f6', backgroundColor: '#3b82f6' }]
+        datasets: [{ label: 'Orders', data: [22, 18, 54, 31, 27], tension: 0.35, borderColor: '#3b82f6', backgroundColor: '#3b82f6' }]
       },
       options: chartOptions
     });
