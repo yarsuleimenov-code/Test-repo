@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaberman Admin Panel MVP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-900 font-sans">
+  <div class="min-h-screen flex">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-gray-200 p-5 flex-shrink-0">
+      <div class="mb-8">
+        <div class="text-2xl font-bold">Zaberman IS</div>
+        <div class="text-sm text-gray-500">Admin Workspace</div>
+      </div>
+
+      <nav class="space-y-3 text-sm">
+        <a href="./index.html" class="block bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl hover:bg-gray-100 transition">Dashboard</a>
+        <a href="./dispatch.html" class="block bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl hover:bg-gray-100 transition">Orders</a>
+        <div class="bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl">Reports</div>
+        <div class="bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl">Analytics</div>
+        <div class="bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl">Routes</div>
+        <a href="https://script.google.com/a/macros/zaberman.com/s/AKfycbxb2KE0B7AuEmSsZQSbltSQxtEpd8MOL3mym1ow-ZtBhwYn9jbglv6Y1OIaUIzlL6xk/exec" target="_blank" class="block bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl hover:bg-gray-100 transition">Warehouse</a>
+        <div class="bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl">Integrations</div>
+        <div class="bg-black text-white px-4 py-3 rounded-xl">Admin</div>
+      </nav>
+
+      <div class="mt-8 text-xs text-gray-500">
+        Operational Hub v0.1<br />
+        Internal Admin Prototype
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 min-w-0">
+
+      <!-- Topbar -->
+      <header class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between gap-4">
+        <div>
+          <h1 class="text-2xl font-bold leading-tight">Admin Control Center</h1>
+          <p class="text-sm text-gray-500">Roles, permissions, database access, integrations, audit and system settings</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="text-sm bg-red-50 text-red-700 border border-red-200 px-4 py-2 rounded-xl">3 Critical</div>
+          <button class="border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 text-sm font-medium">Save draft</button>
+          <button class="bg-black text-white rounded-xl px-4 py-2 text-sm font-medium">Apply changes</button>
+        </div>
+      </header>
+
+      <div class="p-6 space-y-6">
+
+        <!-- System Status -->
+        <section class="bg-black text-white rounded-3xl p-5 shadow-sm">
+          <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 text-sm">
+            <div>
+              <div class="text-gray-400">Users</div>
+              <div class="text-xl font-bold">48</div>
+            </div>
+            <div>
+              <div class="text-gray-400">Active Roles</div>
+              <div class="text-xl font-bold">7</div>
+            </div>
+            <div>
+              <div class="text-gray-400">DB Status</div>
+              <div class="text-xl font-bold text-green-400">Online</div>
+            </div>
+            <div>
+              <div class="text-gray-400">Failed Jobs</div>
+              <div class="text-xl font-bold text-red-400">3</div>
+            </div>
+            <div>
+              <div class="text-gray-400">Last Backup</div>
+              <div class="text-xl font-bold">02:00 AM</div>
+            </div>
+            <div>
+              <div class="text-gray-400">Audit Events</div>
+              <div class="text-xl font-bold text-yellow-300">126</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Admin quick actions -->
+        <section class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+          <h2 class="text-xl font-semibold mb-5">Admin Quick Actions</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+            <button class="text-left border border-gray-300 bg-gray-50 rounded-2xl p-5 font-medium hover:bg-gray-100">Create user</button>
+            <button class="text-left border border-gray-300 bg-gray-50 rounded-2xl p-5 font-medium hover:bg-gray-100">Change role</button>
+            <button class="text-left border border-gray-300 bg-gray-50 rounded-2xl p-5 font-medium hover:bg-gray-100">Run DB backup</button>
+            <button class="text-left border border-red-200 bg-red-50 text-red-700 rounded-2xl p-5 font-medium hover:bg-red-100">Disable user access</button>
+          </div>
+        </section>
+
+        <!-- Role matrix -->
+        <section class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+          <div class="flex items-center justify-between mb-5">
+            <div>
+              <h2 class="text-xl font-semibold">Role Permission Matrix</h2>
+              <p class="text-sm text-gray-500 mt-1">Access by role and functional module. MVP uses demo checkboxes.</p>
+            </div>
+            <button class="border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 text-sm font-medium">Export matrix</button>
+          </div>
+
+          <div class="overflow-auto rounded-2xl border border-gray-200">
+            <table class="w-full min-w-[1200px] text-sm">
+              <thead class="bg-gray-50">
+                <tr class="text-left">
+                  <th class="p-4">Role</th>
+                  <th class="p-4">Dashboard</th>
+                  <th class="p-4">Orders</th>
+                  <th class="p-4">Dispatch</th>
+                  <th class="p-4">Warehouse</th>
+                  <th class="p-4">Reports</th>
+                  <th class="p-4">Analytics</th>
+                  <th class="p-4">DB Read</th>
+                  <th class="p-4">DB Write</th>
+                  <th class="p-4">Users</th>
+                  <th class="p-4">Settings</th>
+                  <th class="p-4">Risk</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-t border-gray-100">
+                  <td class="p-4 font-semibold">Admin</td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><span class="bg-red-50 text-red-700 px-3 py-1 rounded-full text-xs">High</span></td>
+                </tr>
+                <tr class="border-t border-gray-100">
+                  <td class="p-4 font-semibold">BA</td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><span class="bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full text-xs">Medium</span></td>
+                </tr>
+                <tr class="border-t border-gray-100">
+                  <td class="p-4 font-semibold">Dispatcher</td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">Low</span></td>
+                </tr>
+                <tr class="border-t border-gray-100">
+                  <td class="p-4 font-semibold">Broker</td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">Low</span></td>
+                </tr>
+                <tr class="border-t border-gray-100">
+                  <td class="p-4 font-semibold">Warehouse</td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" checked /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><input type="checkbox" /></td>
+                  <td class="p-4"><span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">Low</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Database and access -->
+        <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+
+          <div class="xl:col-span-2 bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+            <div class="flex items-center justify-between mb-5">
+              <div>
+                <h2 class="text-xl font-semibold">Database Access Control</h2>
+                <p class="text-sm text-gray-500 mt-1">Logical DB access groups for MySQL and operational data views.</p>
+              </div>
+              <button class="border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 text-sm font-medium">Test connection</button>
+            </div>
+
+            <div class="overflow-hidden rounded-2xl border border-gray-200">
+              <table class="w-full text-sm">
+                <thead class="bg-gray-50">
+                  <tr class="text-left">
+                    <th class="p-4">Data object</th>
+                    <th class="p-4">Read</th>
+                    <th class="p-4">Write</th>
+                    <th class="p-4">Export</th>
+                    <th class="p-4">Owner</th>
+                    <th class="p-4">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t border-gray-100">
+                    <td class="p-4 font-medium">orders_view</td>
+                    <td class="p-4">Admin, BA, Dispatcher</td>
+                    <td class="p-4">Admin</td>
+                    <td class="p-4">Admin, BA, Dispatcher</td>
+                    <td class="p-4">Operations</td>
+                    <td class="p-4"><span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">Active</span></td>
+                  </tr>
+                  <tr class="border-t border-gray-100">
+                    <td class="p-4 font-medium">payments_view</td>
+                    <td class="p-4">Admin, BA</td>
+                    <td class="p-4">Admin</td>
+                    <td class="p-4">Admin</td>
+                    <td class="p-4">Finance</td>
+                    <td class="p-4"><span class="bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full text-xs">Restricted</span></td>
+                  </tr>
+                  <tr class="border-t border-gray-100">
+                    <td class="p-4 font-medium">route_export_view</td>
+                    <td class="p-4">Admin, Dispatcher</td>
+                    <td class="p-4">Admin</td>
+                    <td class="p-4">Admin, Dispatcher</td>
+                    <td class="p-4">Dispatch</td>
+                    <td class="p-4"><span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">Active</span></td>
+                  </tr>
+                  <tr class="border-t border-gray-100">
+                    <td class="p-4 font-medium">user_audit_log</td>
+                    <td class="p-4">Admin</td>
+                    <td class="p-4">System only</td>
+                    <td class="p-4">Admin</td>
+                    <td class="p-4">Security</td>
+                    <td class="p-4"><span class="bg-red-50 text-red-700 px-3 py-1 rounded-full text-xs">Sensitive</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+            <h2 class="text-xl font-semibold mb-5">DB Health</h2>
+            <div class="space-y-4 text-sm">
+              <div class="flex justify-between border-b border-gray-100 pb-3"><span class="text-gray-500">Connection</span><span class="text-green-600 font-medium">Online</span></div>
+              <div class="flex justify-between border-b border-gray-100 pb-3"><span class="text-gray-500">Replica lag</span><span class="font-medium">0.8 sec</span></div>
+              <div class="flex justify-between border-b border-gray-100 pb-3"><span class="text-gray-500">Last sync</span><span class="font-medium">2 min ago</span></div>
+              <div class="flex justify-between border-b border-gray-100 pb-3"><span class="text-gray-500">Last backup</span><span class="font-medium">02:00 AM</span></div>
+              <div class="flex justify-between"><span class="text-gray-500">Failed queries</span><span class="text-red-600 font-medium">3</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Users and integrations -->
+        <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+
+          <div class="xl:col-span-2 bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+            <div class="flex items-center justify-between mb-5">
+              <h2 class="text-xl font-semibold">User Access Review</h2>
+              <button class="border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 text-sm font-medium">Add user</button>
+            </div>
+
+            <div class="overflow-hidden rounded-2xl border border-gray-200">
+              <table class="w-full text-sm">
+                <thead class="bg-gray-50">
+                  <tr class="text-left">
+                    <th class="p-4">User</th>
+                    <th class="p-4">Role</th>
+                    <th class="p-4">Status</th>
+                    <th class="p-4">Last login</th>
+                    <th class="p-4">MFA</th>
+                    <th class="p-4">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t border-gray-100">
+                    <td class="p-4 font-medium">admin@zaberman.com</td>
+                    <td class="p-4">Admin</td>
+                    <td class="p-4"><span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">Active</span></td>
+                    <td class="p-4">Today</td>
+                    <td class="p-4">Enabled</td>
+                    <td class="p-4"><button class="text-blue-600">Review</button></td>
+                  </tr>
+                  <tr class="border-t border-gray-100">
+                    <td class="p-4 font-medium">dispatcher@zaberman.com</td>
+                    <td class="p-4">Dispatcher</td>
+                    <td class="p-4"><span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">Active</span></td>
+                    <td class="p-4">Today</td>
+                    <td class="p-4">Enabled</td>
+                    <td class="p-4"><button class="text-blue-600">Review</button></td>
+                  </tr>
+                  <tr class="border-t border-gray-100">
+                    <td class="p-4 font-medium">old.user@zaberman.com</td>
+                    <td class="p-4">Broker</td>
+                    <td class="p-4"><span class="bg-red-50 text-red-700 px-3 py-1 rounded-full text-xs">Inactive</span></td>
+                    <td class="p-4">91 days ago</td>
+                    <td class="p-4">Disabled</td>
+                    <td class="p-4"><button class="text-red-600">Disable</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+            <h2 class="text-xl font-semibold mb-5">Integration Access</h2>
+            <div class="space-y-3 text-sm">
+              <div class="border border-gray-200 bg-gray-50 rounded-2xl p-4">
+                <div class="font-medium">Kommo CRM</div>
+                <div class="text-green-600 mt-1">Token active</div>
+              </div>
+              <div class="border border-yellow-200 bg-yellow-50 rounded-2xl p-4">
+                <div class="font-medium">Spoke</div>
+                <div class="text-yellow-700 mt-1">Sync delayed</div>
+              </div>
+              <div class="border border-gray-200 bg-gray-50 rounded-2xl p-4">
+                <div class="font-medium">Google Drive</div>
+                <div class="text-green-600 mt-1">Connected</div>
+              </div>
+              <div class="border border-red-200 bg-red-50 rounded-2xl p-4">
+                <div class="font-medium">RingCentral</div>
+                <div class="text-red-700 mt-1">Blocked by policy</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Audit and settings -->
+        <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          <div class="xl:col-span-2 bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+            <h2 class="text-xl font-semibold mb-5">Audit Log</h2>
+            <div class="space-y-3 text-sm">
+              <div class="border border-gray-200 rounded-2xl p-4 bg-gray-50">10:42 AM, Role matrix updated by admin@zaberman.com</div>
+              <div class="border border-gray-200 rounded-2xl p-4 bg-gray-50">10:15 AM, DB connection tested successfully</div>
+              <div class="border border-yellow-200 rounded-2xl p-4 bg-yellow-50 text-yellow-700">09:48 AM, Spoke sync delayed more than 15 minutes</div>
+              <div class="border border-red-200 rounded-2xl p-4 bg-red-50 text-red-700">09:20 AM, Failed login attempt for old.user@zaberman.com</div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+            <h2 class="text-xl font-semibold mb-5">Security Settings</h2>
+            <div class="space-y-4 text-sm">
+              <label class="flex items-center justify-between border-b border-gray-100 pb-3">
+                <span>Require MFA</span>
+                <input type="checkbox" checked />
+              </label>
+              <label class="flex items-center justify-between border-b border-gray-100 pb-3">
+                <span>Block inactive users</span>
+                <input type="checkbox" checked />
+              </label>
+              <label class="flex items-center justify-between border-b border-gray-100 pb-3">
+                <span>Audit all exports</span>
+                <input type="checkbox" checked />
+              </label>
+              <label class="flex items-center justify-between border-b border-gray-100 pb-3">
+                <span>Allow manual DB write</span>
+                <input type="checkbox" />
+              </label>
+              <label class="flex items-center justify-between">
+                <span>External access</span>
+                <input type="checkbox" />
+              </label>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+</body>
+</html>
