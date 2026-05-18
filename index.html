@@ -1,224 +1,178 @@
-export default function ZabermanDashboardWireframe() {
-  const sidebarItems = [
-    'Dashboard',
-    'Orders',
-    'Reports',
-    'Analytics',
-    'Directory',
-    'Integrations',
-    'Admin'
-  ];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zaberman MVP</title>
 
-  const quickActions = [
-    'Export Active Orders',
-    'Open Kommo',
-    'Open Spoke',
-    'Generate Report',
-    'Upload XLS',
-    'Search Order'
-  ];
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-  const kpis = [
-    'Active Orders',
-    'Delivered Today',
-    'Revenue',
-    'Delayed Orders',
-    'Pending Tasks',
-    'Exports'
-  ];
+<body class="bg-gray-100 font-sans">
 
-  const alerts = [
-    'Orders without dispatcher',
-    'Delayed deliveries',
-    'Missing POD',
-    'Payment pending',
-    'Export failed'
-  ];
+<div class="min-h-screen flex">
 
-  return (
-    <div className="min-h-screen bg-gray-100 text-gray-900 flex font-sans">
-      {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-gray-200 p-5 flex flex-col gap-3">
-        <div className="mb-6">
-          <div className="text-2xl font-bold">Zaberman IS</div>
-          <div className="text-sm text-gray-500">Operational Hub</div>
-        </div>
-
-        {sidebarItems.map((item) => (
-          <button
-            key={item}
-            className={`text-left px-4 py-3 rounded-xl transition border ${
-              item === 'Dashboard'
-                ? 'bg-black text-white border-black'
-                : 'bg-gray-50 hover:bg-gray-100 border-gray-200'
-            }`}
-          >
-            {item}
-          </button>
-        ))}
-      </aside>
-
-      {/* Main */}
-      <main className="flex-1 flex flex-col">
-        {/* Topbar */}
-        <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4 w-full max-w-2xl">
-            <input
-              placeholder="Search orders, customers, contacts..."
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none"
-            />
-          </div>
-
-          <div className="flex items-center gap-4 ml-6">
-            <div className="text-sm bg-gray-100 px-4 py-2 rounded-xl">
-              BA Role
-            </div>
-            <div className="w-10 h-10 rounded-full bg-gray-300" />
-          </div>
-        </header>
-
-        {/* Content */}
-        <div className="p-6 space-y-6 overflow-auto">
-          {/* Quick Actions */}
-          <section className="bg-white rounded-3xl shadow-sm border border-gray-200 p-6">
-            <div className="text-xl font-semibold mb-5">Quick Actions</div>
-
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-              {quickActions.map((action) => (
-                <button
-                  key={action}
-                  className="border border-gray-300 bg-gray-50 hover:bg-gray-100 rounded-2xl p-5 text-left font-medium"
-                >
-                  {action}
-                </button>
-              ))}
-            </div>
-          </section>
-
-          {/* KPI */}
-          <section className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-            {kpis.map((kpi) => (
-              <div
-                key={kpi}
-                className="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm"
-              >
-                <div className="text-sm text-gray-500">{kpi}</div>
-                <div className="text-3xl font-bold mt-3">—</div>
-              </div>
-            ))}
-          </section>
-
-          {/* Charts */}
-          <section className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-            <div className="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm h-80">
-              <div className="text-lg font-semibold mb-5">
-                Orders by Status
-              </div>
-
-              <div className="h-full border-2 border-dashed border-gray-300 rounded-2xl flex items-center justify-center text-gray-400 text-lg">
-                Pie Chart Area
-              </div>
-            </div>
-
-            <div className="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm h-80">
-              <div className="text-lg font-semibold mb-5">
-                Revenue Trend
-              </div>
-
-              <div className="h-full border-2 border-dashed border-gray-300 rounded-2xl flex items-center justify-center text-gray-400 text-lg">
-                Line Chart Area
-              </div>
-            </div>
-          </section>
-
-          {/* Orders + Alerts */}
-          <section className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-            {/* Orders */}
-            <div className="xl:col-span-2 bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
-              <div className="flex items-center justify-between mb-5">
-                <div className="text-xl font-semibold">
-                  Active Orders Snapshot
-                </div>
-
-                <button className="border border-gray-300 rounded-xl px-4 py-2 bg-gray-50">
-                  Export
-                </button>
-              </div>
-
-              <div className="overflow-hidden rounded-2xl border border-gray-200">
-                <table className="w-full text-sm">
-                  <thead className="bg-gray-50">
-                    <tr className="text-left">
-                      <th className="p-4">Order ID</th>
-                      <th className="p-4">Status</th>
-                      <th className="p-4">Broker</th>
-                      <th className="p-4">Dispatcher</th>
-                      <th className="p-4">Last Update</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {[1, 2, 3, 4, 5].map((row) => (
-                      <tr key={row} className="border-t border-gray-100">
-                        <td className="p-4">#10{row}24</td>
-                        <td className="p-4">In Transit</td>
-                        <td className="p-4">Broker</td>
-                        <td className="p-4">Dispatcher</td>
-                        <td className="p-4">2 min ago</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* Alerts */}
-            <div className="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
-              <div className="text-xl font-semibold mb-5">
-                Alerts / Problems
-              </div>
-
-              <div className="space-y-3">
-                {alerts.map((alert) => (
-                  <div
-                    key={alert}
-                    className="border border-red-200 bg-red-50 rounded-2xl p-4 text-sm"
-                  >
-                    ⚠ {alert}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Integrations */}
-          <section className="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
-            <div className="text-xl font-semibold mb-5">
-              Integrations Hub
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-              {['Kommo CRM', 'Spoke', 'Google Drive', 'BI Dashboard'].map(
-                (service) => (
-                  <div
-                    key={service}
-                    className="border border-gray-200 rounded-2xl p-5 bg-gray-50"
-                  >
-                    <div className="font-semibold text-lg mb-2">{service}</div>
-                    <div className="text-sm text-green-600 mb-4">
-                      Status: Online
-                    </div>
-
-                    <button className="border border-gray-300 rounded-xl px-4 py-2 bg-white text-sm">
-                      Open Service
-                    </button>
-                  </div>
-                )
-              )}
-            </div>
-          </section>
-        </div>
-      </main>
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white border-r border-gray-200 p-5">
+    <div class="mb-8">
+      <h1 class="text-2xl font-bold">Zaberman IS</h1>
+      <p class="text-gray-500 text-sm">Operational Hub</p>
     </div>
-  );
-}
+
+    <div class="space-y-3">
+      <button class="w-full text-left bg-black text-white px-4 py-3 rounded-xl">
+        Dashboard
+      </button>
+
+      <button class="w-full text-left bg-gray-50 px-4 py-3 rounded-xl border">
+        Orders
+      </button>
+
+      <button class="w-full text-left bg-gray-50 px-4 py-3 rounded-xl border">
+        Reports
+      </button>
+
+      <button class="w-full text-left bg-gray-50 px-4 py-3 rounded-xl border">
+        Analytics
+      </button>
+
+      <button class="w-full text-left bg-gray-50 px-4 py-3 rounded-xl border">
+        Directory
+      </button>
+
+      <button class="w-full text-left bg-gray-50 px-4 py-3 rounded-xl border">
+        Integrations
+      </button>
+
+      <button class="w-full text-left bg-gray-50 px-4 py-3 rounded-xl border">
+        Admin
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="flex-1">
+
+    <!-- Topbar -->
+    <header class="bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+
+      <input
+        type="text"
+        placeholder="Search orders, customers, contacts..."
+        class="border border-gray-300 rounded-xl px-4 py-3 w-full max-w-2xl"
+      />
+
+      <div class="ml-6 bg-gray-100 px-4 py-2 rounded-xl text-sm">
+        BA Role
+      </div>
+
+    </header>
+
+    <!-- Content -->
+    <div class="p-6 space-y-6">
+
+      <!-- Quick Actions -->
+      <section class="bg-white rounded-3xl border border-gray-200 p-6">
+
+        <h2 class="text-xl font-semibold mb-5">
+          Quick Actions
+        </h2>
+
+        <div class="grid grid-cols-3 gap-4">
+
+          <div class="bg-gray-50 border rounded-2xl p-5">
+            Export Active Orders
+          </div>
+
+          <div class="bg-gray-50 border rounded-2xl p-5">
+            Open Kommo
+          </div>
+
+          <div class="bg-gray-50 border rounded-2xl p-5">
+            Open Spoke
+          </div>
+
+          <div class="bg-gray-50 border rounded-2xl p-5">
+            Generate Report
+          </div>
+
+          <div class="bg-gray-50 border rounded-2xl p-5">
+            Upload XLS
+          </div>
+
+          <div class="bg-gray-50 border rounded-2xl p-5">
+            Search Order
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- KPI -->
+      <section class="grid grid-cols-6 gap-4">
+
+        <div class="bg-white rounded-2xl border p-5">
+          <div class="text-sm text-gray-500">Active Orders</div>
+          <div class="text-3xl font-bold mt-3">245</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border p-5">
+          <div class="text-sm text-gray-500">Delivered Today</div>
+          <div class="text-3xl font-bold mt-3">18</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border p-5">
+          <div class="text-sm text-gray-500">Revenue</div>
+          <div class="text-3xl font-bold mt-3">$42k</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border p-5">
+          <div class="text-sm text-gray-500">Delayed Orders</div>
+          <div class="text-3xl font-bold mt-3">7</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border p-5">
+          <div class="text-sm text-gray-500">Pending Tasks</div>
+          <div class="text-3xl font-bold mt-3">31</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border p-5">
+          <div class="text-sm text-gray-500">Exports</div>
+          <div class="text-3xl font-bold mt-3">12</div>
+        </div>
+
+      </section>
+
+      <!-- Charts -->
+      <section class="grid grid-cols-2 gap-6">
+
+        <div class="bg-white rounded-3xl border p-6 h-80">
+          <h2 class="text-lg font-semibold mb-5">
+            Orders by Status
+          </h2>
+
+          <div class="h-full border-2 border-dashed rounded-2xl flex items-center justify-center text-gray-400">
+            Pie Chart Area
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl border p-6 h-80">
+          <h2 class="text-lg font-semibold mb-5">
+            Revenue Trend
+          </h2>
+
+          <div class="h-full border-2 border-dashed rounded-2xl flex items-center justify-center text-gray-400">
+            Line Chart Area
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>
